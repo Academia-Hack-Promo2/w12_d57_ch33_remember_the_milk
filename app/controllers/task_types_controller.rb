@@ -35,6 +35,17 @@ class TaskTypesController < ApplicationController
 		end
 	end
 
+	def update
+		exist = Task.exists?(params[:id].to_i)
+		if exist
+			task = Task.update(params[:id].to_i, permit)
+			render json: task
+			
+		else
+			render json: {"Error" => "Error 404 La Tarea no existe"}
+		end
+	end
+
 def permit
 	params.permit(:title, :finish_date, :status, :task_type)
 end	
