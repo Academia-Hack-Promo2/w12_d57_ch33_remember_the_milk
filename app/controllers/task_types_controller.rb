@@ -14,7 +14,28 @@ class TaskTypesController < ApplicationController
 		end
 	end
 
-	def permit
-		params.permit(:title, :finish_date, :status, :task_type)
-	end	
+	def show
+		aux = Task.exists?((params[:id].to_i))
+		if aux 
+			task = Task.find((params[:id].to_i))
+			render json: task.to_json
+		else
+			render json: {"Error" => "Error 404 La Tarea no existe"}
+		end
+
+	end
+	def destroy
+		exit =  Task.exists?((params[:id].to_i))
+		if exit
+			task = Task.find((params[:id].to_i))
+			task.delete
+			render json: task.to_json
+		else
+			render json: {"Error" => "Error 404 La Tarea no existe"}
+		end
+	end
+
+def permit
+	params.permit(:title, :finish_date, :status, :task_type)
+end	
 end
