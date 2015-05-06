@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20150506143645) do
     t.string   "task_type",   limit: 15
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "category_id"
   end
+
+  add_index "tasks", ["category_id"], name: "index_tasks_on_category_id", using: :btree
 
 end

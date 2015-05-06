@@ -6,6 +6,7 @@ class CreateTask < ActiveRecord::Migration
     	t.string :status, limit: 10
     	t.string :task_type, limit: 15
     	t.timestamps null: false
+      t.references :category, index: true, foreign_key:true
     end
   end
 end
