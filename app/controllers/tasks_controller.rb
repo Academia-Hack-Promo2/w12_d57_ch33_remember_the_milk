@@ -1,7 +1,12 @@
 class TasksController < ApplicationController
 	def index
-		alltaks = Task.all
-		render json: alltaks
+		task = nil
+		if params[:category].nil?
+			task = Task.all
+		else
+			task = Task.where("category_id" => params[:category].to_i)
+		end
+		render json: task		
 	end
 
 	def create
@@ -49,6 +54,6 @@ class TasksController < ApplicationController
 	private
 
 	def permit
-		params.permit(:title, :finish_date, :status, :task_type)
+		params.permit(:title, :finish_date, :status, :task_type, :category_id)
 	end	
 end
