@@ -50,6 +50,16 @@ class TasksController < ApplicationController
 			render json: {"Error" => "Error 404 La Tarea no existe"}
 		end
 	end
+	def finish
+		exist = Task.exists?(params[:id].to_i)
+		if exist 
+			status = {"status" => "Listo"}
+			task = Task.update(params[:id], status)
+			render json: task
+		else
+			render json: {"Error" => "Error 404 La Tarea no existe"}
+		end
+	end
 
 	private
 

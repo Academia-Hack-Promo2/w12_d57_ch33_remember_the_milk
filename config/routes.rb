@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :tasks, except: ["new","edit"]
   resources :categories, except: ["new","edit"]
 
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-
+  post 'tasks/:id/finish' => 'tasks#finish'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
