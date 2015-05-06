@@ -1,4 +1,4 @@
-class TaskTypesController < ApplicationController
+class TasksController < ApplicationController
 	def index
 		alltaks = Task.all
 		render json: alltaks
@@ -45,6 +45,8 @@ class TaskTypesController < ApplicationController
 			render json: {"Error" => "Error 404 La Tarea no existe"}
 		end
 	end
+
+	private
 
 	def permit
 		params.permit(:title, :finish_date, :status, :task_type)
