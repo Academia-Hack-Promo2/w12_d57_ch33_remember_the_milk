@@ -19,9 +19,25 @@ class CategoriesController < ApplicationController
   	else
   		render json:  {"error"=> "La categoria no existe"}
   	end
-
-
   end
+
+  def destroy
+    exist = Category.exists?(params[:id])
+    if exist
+      objeto = Category.destroy(params[:id])
+      render json: {"mensaje"=> "Categoria borrada"}
+    else
+      render json: {"Error" => "La categoria no existe"}
+    end
+  end
+
+  def index
+    objeto = Category.all
+    render json: objeto  
+  end
+  
+
+
   
   private
   
