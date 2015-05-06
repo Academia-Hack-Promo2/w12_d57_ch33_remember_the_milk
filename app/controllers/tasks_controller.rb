@@ -1,4 +1,4 @@
-class TaskTypesController < ApplicationController
+class TasksController < ApplicationController
 	def index
 		alltaks = Task.all
 		render json: alltaks
@@ -46,7 +46,9 @@ class TaskTypesController < ApplicationController
 		end
 	end
 
-def permit
-	params.permit(:title, :finish_date, :status, :task_type)
-end	
+	private
+
+	def permit
+		params.permit(:title, :finish_date, :status, :task_type)
+	end	
 end
