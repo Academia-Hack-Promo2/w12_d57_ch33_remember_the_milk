@@ -46,7 +46,7 @@ class TaskTypesController < ApplicationController
 		end
 	end
 
-def permit
-	params.permit(:title, :finish_date, :status, :task_type)
-end	
+	def permit
+		params.permit(:title, :finish_date, :status, :task_type)
+	end	
 end
