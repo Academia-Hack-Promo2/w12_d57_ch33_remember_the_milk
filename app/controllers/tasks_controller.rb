@@ -62,9 +62,18 @@ class TasksController < ApplicationController
 		end
 	end
 	def status_list
-			
-			task = Task.where("status" => params[:status])
-			render json: task		
+		status = params[:status]
+		case status
+			when "finish"
+				task = Task.where("status" => "listo")
+				render json: task		
+			when "pending"
+				task = Task.where("status" => "pendiente")
+				render json: task	
+			else
+				render json: {"Error" => "El estatus no existe"}
+		end
+				
 	end
 
 	private
